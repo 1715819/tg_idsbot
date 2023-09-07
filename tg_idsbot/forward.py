@@ -7,17 +7,17 @@ async def forwarded(bot, msg):
     if msg.forward_from:
         text += "Forward detected!\n\n"
         
-        if msg.forward_from["is_bot"]:
+        if msg.forward_from.is_bot:
             text += "**Bot**"
         else:
             text += "**User**"
             
-        text += f'\n{msg.forward_from["first_name"]}\n'
+        text += f'\n{msg.forward_from.first_name}\n'
         
-        if msg.forward_from["username"]:
-            text += f'@{msg.forward_from["username"]}\nID : `{msg.forward_from["id"]}`'
+        if msg.forward_from.username:
+            text += f'@{msg.forward_from.username}\nID : `{msg.forward_from.id}`'
         else:
-            text += f'ID : `{msg.forward_from["id"]}`'
+            text += f'ID : `{msg.forward_from.id}`'
     else:
         if msg.forward_sender_name:
             text += f"Forward detected but unfortunately, {msg.forward_sender_name} has enabled forwarding privacy, so I can't get their id"
