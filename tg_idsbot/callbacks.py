@@ -3,15 +3,18 @@ from pyrogram.types import InlineKeyboardMarkup
 from config import Config
 from data import Data
 
-# Callbacks
-@Client.on_callback_query()
+# 创建Pyrogram客户端
+app = Client("my_bot", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
+
+# 回调函数
+@app.on_callback_query()
 async def _calls(bot, callback_query):
     chat_id = callback_query.from_user.id
-    message_id = callback_query.message.message_id  # 使用callback_query.message.message_id获取message_id
+    message_id = callback_query.message.message_id
     # .lower() to test somethings..
     if callback_query.data.lower() == "home":
         user = await bot.get_me()
-        mention = user["mention"]
+        mention = user.mention
         await bot.edit_message_text(
             chat_id=chat_id,
             message_id=message_id,
@@ -46,3 +49,7 @@ async def _calls(bot, callback_query):
             reply_markup=InlineKeyboardMarkup(Data.home_button),
         )
     """ More Plans """
+
+# 启动Bot
+if __name__ == "__main__":
+    app.run()
