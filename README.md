@@ -32,3 +32,6 @@ docker run -p 5001:5000 -e API_ID= -e API_HASH= -e BOT_TOKEN= -e OWNER_ID= -e OW
 
 
 ```
+
+###
+与https://github.com/1715819/id-on-render配合使用，从https://github.com/1715819/id-on-render构建
